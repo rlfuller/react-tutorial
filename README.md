@@ -24,5 +24,15 @@ Some of the things I took from this tutorial
 7. React components have state by setting `this.state` in their constructor
 8. To collect data from multiple children or to have child components communicate with each other, declare the state in the parent component instead of the children. Let the parent communicate the state with the children by using props. This will keep the children in-synch with each other and with the parent component.
 9. Importance of immutability. Instead of chaning data directly, it's a better practice to take a copy and then modify the copy. 
-    ..- Makes complex features simple, such as a feature to view history or revert changes. 
-    ..- Makes detecting changes easier to determine when to update state
+    * Makes complex features simple, such as a feature to view history or revert changes. 
+    * Makes detecting changes easier to determine when to update state
+
+### April 13th - Function Components, keys
+1. Function Components only have a `render()` method and don't have their own state
+2. It's really important to assign keys when building dynamic lists
+
+`key` is a special and reserved property in React. When an element is created, React extracts the key property and stores the key directly on the returned element. Even though key may look like it belongs in props, key cannot be referenced using `this.props.key`. React automatically uses key to decide which components to update. A component cannot inquire about its key.
+
+If no key is specified, React will present a warning and use the array index as a key by default. 
+
+When a list is re-rendered, React takes each list item’s key and searches the previous list’s items for a matching key. If the current list has a key that didn’t exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved. Keys tell React about the identity of each component which allows React to maintain state between re-renders. If a component’s key changes, the component will be destroyed and re-created with a new state.
